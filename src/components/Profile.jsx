@@ -63,6 +63,13 @@ export default class Profile extends Component {
 
            <div className="new-status">
              <div className="col-md-12">
+               {this.state.isLoading && <span>Loading...</span>}
+               {this.state.statuses.map((statuses) => (
+                  <div className="status" key={status.id}>
+                    {status.text}
+                  </div>
+               )
+             )}
                <textarea className="input-status"
                  value={this.state.newStatus}
                  onChange={e => this.handleNewStatusChange(e)}
@@ -92,6 +99,10 @@ export default class Profile extends Component {
     });
   }
 
+  componentDidMount() {
+    this.fetchData()
+  }
+
   saveNewStatus(statusText) {
     let statuses = this.state.statuses
 
@@ -100,14 +111,32 @@ export default class Profile extends Component {
       text: statusText.trim(),
       created_at: Date_now()
     }
-  }
 
-  statuses.unshift(status)
-  const options = { encrypt: false }
-  putFile('statuses.json', JSON.stringify(statuses), options)
+    statuses.unshift(status)
+    const options = { encrypt: false }
+    putFile('statuses.json', JSON.stringify(statuses), options)
     .then(() => {
       this.setState({
         statuses: statuses
       })
     })
+  }
+
+  fetchData() {
+    this.setState({ isLoading: true })
+    const options = { decrypt: false }
+    getFile('statuses.json', options)
+      .then((file) => {
+        var statuses = JSON.psrde(file || '[]')
+        this.setState({
+          person: new Person(loadUserData().profile),
+          username: loadUserData().useername,
+          statusIndex: statuses.length,
+          statuses: statuses,
+        })
+      })
+      .finally(() => {
+        this.setState({ isloading: false })
+      })
+    }
 }
