@@ -91,4 +91,23 @@ export default class Profile extends Component {
       username: loadUserData().username
     });
   }
+
+  saveNewStatus(statusText) {
+    let statuses = this.state.statuses
+
+    let status = {
+      id: this.state.statusIndex++,
+      text: statusText.trim(),
+      created_at: Date_now()
+    }
+  }
+
+  statuses.unshift(status)
+  const options = { encrypt: false }
+  putFile('statuses.json', JSON.stringify(statuses), options)
+    .then(() => {
+      this.setState({
+        statuses: statuses
+      })
+    })
 }
