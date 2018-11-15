@@ -3,6 +3,9 @@ import {
   isSignInPending,
   loadUserData,
   Person,
+  getFile,
+  putFile,
+  lookupProfile
 } from 'blockstack';
 
 const avatarFallbackImage = 'https://s3.amazonaws.com/onename/avatar-placeholder.png';
@@ -20,12 +23,18 @@ export default class Profile extends Component {
   	  	  return avatarFallbackImage;
   	  	},
   	  },
+      username: "",
+      newStatus: "",
+      statuses: [],
+      statusIndex: 0,
+      isLoading: false
   	};
   }
 
   render() {
     const { handleSignOut } = this.props;
     const { person } = this.state;
+    const { username } = this.state;
     return (
       !isSignInPending() ?
       <div className="panel-welcome" id="section-2">
