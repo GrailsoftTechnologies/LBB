@@ -62,7 +62,7 @@ export default class Profile extends Component {
            </div>
 
            <div className="new-status">
-             <div className="col-md-12">
+             <div className="col-md-12 statuses">
                {this.state.isLoading && <span>Loading...</span>}
                {this.state.statuses.map((statuses) => (
                   <div className="status" key={status.id}>
@@ -70,6 +70,8 @@ export default class Profile extends Component {
                   </div>
                )
              )}
+             </div>
+             <div className="col-md-12">
                <textarea className="input-status"
                  value={this.state.newStatus}
                  onChange={e => this.handleNewStatusChange(e)}
@@ -127,7 +129,7 @@ export default class Profile extends Component {
     const options = { decrypt: false }
     getFile('statuses.json', options)
       .then((file) => {
-        var statuses = JSON.psrde(file || '[]')
+        var statuses = JSON.parse(file || '[]')
         this.setState({
           person: new Person(loadUserData().profile),
           username: loadUserData().useername,
