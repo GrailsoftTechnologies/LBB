@@ -1,5 +1,6 @@
 const path = require('path');
 const webpack = require('webpack');
+//Pdroduction Build Needs .(dot) processing enabled in web server
 
 // copy manifest.json to the path: 'public/build'
 // this will allow for the authRequest to see the file at www.example.com/manifest.json
@@ -22,7 +23,9 @@ module.exports = {
     filename: 'index_bundle.js',
   },
   devServer: {
-    historyApiFallback: true,
+    historyApiFallback: {
+      disableDotRule : true
+    },
     watchOptions: { aggregateTimeout: 300, poll: 1000 },
     headers: {
       "Access-Control-Allow-Origin": "*",
