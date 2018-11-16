@@ -60,17 +60,7 @@ export default class Profile extends Component {
                </div>
              </div>
            </div>
-
            <div className="new-status">
-             <div className="col-md-12 statuses">
-               {this.state.isLoading && <span>Loading...</span>}
-               {this.state.statuses.map((statuses) => (
-                  <div className="status" key={status.id}>
-                    {status.text}
-                  </div>
-               )
-             )}
-             </div>
              <div className="col-md-12">
                <textarea className="input-status"
                  value={this.state.newStatus}
@@ -101,6 +91,17 @@ export default class Profile extends Component {
     });
   }
 
+  handleNewStatusChange(event) {
+    this.setState({newStatus : event.target.value})
+  }
+
+  handleNewStatusSubmit(event) {
+    this.saveNewStatus(this.state.newStatus)
+    this.setState({
+      newStatus: ""
+    })
+  }
+
   componentDidMount() {
     this.fetchData()
   }
@@ -111,7 +112,7 @@ export default class Profile extends Component {
     let status = {
       id: this.state.statusIndex++,
       text: statusText.trim(),
-      created_at: Date_now()
+      created_at: Date.now()
     }
 
     statuses.unshift(status)
@@ -132,7 +133,7 @@ export default class Profile extends Component {
         var statuses = JSON.parse(file || '[]')
         this.setState({
           person: new Person(loadUserData().profile),
-          username: loadUserData().useername,
+          username: loadUserData().username,
           statusIndex: statuses.length,
           statuses: statuses,
         })
