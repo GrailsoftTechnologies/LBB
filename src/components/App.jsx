@@ -8,7 +8,7 @@ import {
   handlePendingSignIn,
   signUserOut,
 } from 'blockstack';
-import { Switch, Router } from 'react-router-dom'
+import { Switch, Route } from 'react-router-dom'
 
 export default class App extends Component {
 
