@@ -61,6 +61,15 @@ export default class Profile extends Component {
              </div>
            </div>
            <div className="new-status">
+             <div className="col-md-12 statuses">
+               {this.state.isLoading && <span>Loading...</span>}
+               {this.state.statuses.map((status) => (
+                 <div className="status" key={status.id}>
+                   {status.text}
+                 </div>
+                )
+               )}
+             </div>
              <div className="col-md-12">
                <textarea className="input-status"
                  value={this.state.newStatus}
