@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Navbar, NavbarBrand, NavbarToggler, Nav, NavItem, NavLink, Collapse } from 'reactstrap';
-import './styles.css';
+import './navstyles.css';
 
 class NavBar extends Component {
   constructor(props) {
@@ -28,13 +28,13 @@ class NavBar extends Component {
     return (
       <Navbar expand="md" className={this.props.className}>
         <NavbarBrand href="/">
-
+          <img id="logo" src={this.props.logo} alt="Business Logo"></img>
         </NavbarBrand>
         <NavbarToggler onClick={this.toggle} />
         <Collapse isOpen={this.state.isOpen} navbar>
           <Nav className="ml-auto" navbar>
             <NavItem>
-							<NavLink href={"/menu"} className="menuItem" onClick={this.toggle2}>Sign Up
+							<NavLink href={"/signup"} className="menuItem" onClick={this.toggle2}>Sign Up
 							</NavLink>
 						</NavItem>
 						<NavItem>
@@ -42,17 +42,6 @@ class NavBar extends Component {
 						</NavItem>
 						<NavItem>
 							<NavLink href={"/contact"} className="menuItem" onClick={this.toggle2}>Contact</NavLink>
-						</NavItem>
-          </Nav>
-          <Nav className="socialIcons">
-						<NavItem>
-							<NavLink href="https://www.instagram.com/grailsofttechnologies/" target="_blank" rel="noopener noreferrer"><span className="footer-icon icon fa fa-instagram desktop-only"></span></NavLink>
-						</NavItem>
-						<NavItem>
-							<NavLink href="https://www.facebook.com" target="_blank" rel="noopener noreferrer"><span className="footer-icon icon fa fa-facebook-square desktop-only"></span></NavLink>
-						</NavItem>
-						<NavItem>
-							<NavLink href="https://www.yelp.com" target="_blank" rel="noreferrer noopener"><span className="footer-icon icon fa fa-yelp desktop-only"></span></NavLink>
 						</NavItem>
           </Nav>
         </Collapse>
