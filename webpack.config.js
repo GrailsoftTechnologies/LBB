@@ -16,6 +16,7 @@ const HtmlWebpackPluginConfig = new HtmlWebpackPlugin({
 });
 
 module.exports = {
+  mode: 'development',
   entry: './src/index.js',
   target: 'web',
   output: {
