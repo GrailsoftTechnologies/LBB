@@ -1,0 +1,13 @@
+.Footer {
+  height: 6vh;
+  font-size: 1.75vh;
+  font-weight: lighter;
+  width: 100%;
+  padding-top: 1vh;
+}
+
+.Footer a {
+  color: inherit;
+  font-size: inherit;
+  margin-left: 10px;
+}

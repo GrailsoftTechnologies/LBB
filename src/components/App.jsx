@@ -2,6 +2,7 @@ import React, { Component, Link } from 'react';
 import Profile from './Profile.jsx';
 import Signin from './Signin.jsx';
 import NavBar from './NavBar.jsx';
+import Footer from './Footer.jsx';
 import {
   isSignInPending,
   isUserSignedIn,
@@ -32,7 +33,7 @@ export default class App extends Component {
   render() {
     return (
       <div className="App">
-        <NavBar />
+        <NavBar logo={Logo}/>
         <div className="site-wrapper">
           <div className="site-wrapper-inner">
             { !isUserSignedIn() ?
@@ -48,6 +49,7 @@ export default class App extends Component {
                 </Switch>
             }
           </div>
+          <Footer />
         </div>
       </div>
     );
